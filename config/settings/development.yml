@@ -1,0 +1,46 @@
+sms_dinghong:
+  sms_id: "2504"
+  sms_account: "1004069"
+  sms_password: "ABcd1234"
+
+sms_dinghong_standard:
+  sms_account: "200064"
+  sms_password: "200064"
+
+sms_santong:
+  sms_account: "dh51891"
+  sms_password: "19azK%*O"
+  sms_subcode: "51891"
+
+# 来电名片
+sms_zunyuan:
+  host: "222.66.139.23"
+  port: 9980
+  one_heartbeat_time: 5  # 心跳消息间隔 5秒，socket在3 * 5没收到心跳消息会断开链接
+  delimiter: 0
+  test_phone_no: "19900210"
+  wsdl: "http://222.66.139.23:8081/services/RvpCardMngService?wsdl" # 短信内容修改接口
+
+sms_card_js:
+  url: "http://localhost:8080/sms/send_sms"
+  port: 8080
+  calling: "15301586633"
+
+self_service:
+  sms_content:
+    put:
+      url: "http://lvh.me:3001/api/v1/self_service/organizations/%{id}/update_state"
+
+# tcp_socket
+tcp_socket:
+  host: "114.28.48.13"
+  port: 60001
+  re_connect: 3
+
+sms_yitong:
+  url: 'esms.etonenet.com/sms/mt'
+  spid: "7770"
+  sppassword: "ZO7dulw"
+  spsc: "00"
+  dc: 15   # 消息内容编码格式 15/GBk 8/UTF_16BE 0/ASC_Ⅱ
+
