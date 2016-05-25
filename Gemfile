@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -45,3 +45,20 @@ end
 
 # use config
 gem "rails_config", "~> 0.4.2"
+
+gem 'savon', '~> 2.11.0'
+
+gem 'rest-client'
+
+gem 'bindata'
+
+gem 'devise'
+
+gem 'cancancan'
+
+gem 'rolify'
+
+gem 'annotate'
+
+gem 'jquery-datatables-rails'
+gem 'ajax-datatables-rails'

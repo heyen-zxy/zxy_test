@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -6,9 +7,11 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     pp '-------------'
-    Sms.send_heartbeat
-    Sms.send_ringing 12, '66666', '13585665936'
-    pp '=============='
+    # #Sms.send_heartbeat
+    # #Sms.send_ringing 12, '66666', '13585665936'
+    # pp Nav.mm
+    # pp Nav.client.call(:main, {})
+    # pp '=============='
   end
 
   # GET /users/1
