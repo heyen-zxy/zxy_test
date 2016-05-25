@@ -31,17 +31,14 @@ class Ability
 
 
     if admin.has_role? :admin
-      pp '11111111111111'
       can :manage, :all
     end
 
     if admin.has_role? :normal
-      pp '22222222222222'
       can :manage, User
     end
 
     if admin.has_role? :user
-      pp '33333333333333'
       can :read, User
     end
 

@@ -5,7 +5,10 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    respond_to do |format|
+      format.html
+      format.json { render json: UserDatatable.new(view_context) }
+    end
     pp '-------------'
     # #Sms.send_heartbeat
     # #Sms.send_ringing 12, '66666', '13585665936'

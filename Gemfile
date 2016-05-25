@@ -1,5 +1,16 @@
 source 'https://ruby.taobao.org'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap'
+  gem 'rails-assets-font-awesome', '~> 4.3.0'
+  gem 'rails-assets-datatables', '~> 1.10.7'
+  gem 'rails-assets-datatables-plugins'
+  gem 'rails-assets-datatables-responsive'
+  gem 'rails-assets-bootstrap-datepicker'
+  gem 'rails-assets-bootstrap-daterangepicker', '~> 2.1.19'
+  gem 'rails-assets-admin-lte' , '~> 2.0.5'
+end
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -62,3 +73,4 @@ gem 'annotate'
 
 gem 'jquery-datatables-rails'
 gem 'ajax-datatables-rails'
+gem 'bootstrap-sass'

@@ -11,5 +11,8 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require bootstrap
+ *= require datatables-plugins/integration/bootstrap/3/dataTables.bootstrap
+ *= require datatables-responsive
  *= require_self
  */

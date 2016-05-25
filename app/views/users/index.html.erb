@@ -2,28 +2,51 @@
 
 <h1>Listing Users</h1>
 
-<table>
+<table id="users-table" data-source="<%= users_path(format: :json) %>">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th colspan="3"></th>
+      <th>姓名</th>
+      <th>邮箱</th>
+      <th>QQ</th>
+      <th>年龄</th>
+      <th>地址</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.age %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+
   </tbody>
 </table>
 
 <br>
 
 <%= link_to 'New User', new_user_path %>
+<script type="text/javascript">
+  $(function() {
+    var instance = $.extend(true, {'sSearchPlaceholder': '按 姓名/邮箱/QQ 搜索'}, datatable_zh_CN)
+    var table = $('#users-table').DataTable({
+      processing: true,
+      serverSide: true,
+      responsive: {details: false},
+      lengthMenu: [ 15, 50, 100 ],
+      ajax: $('#users-table').data('source'),
+      pagingType: 'full_numbers',
+      ordering: false,
+      language: instance,
+//      columnDefs: [
+//        {
+//          targets: 3,
+//          render: function(data, type, row) {
+            <!--<%# if can? :manage, Instance %>-->
+//            return data;
+            <!--<%# else %>-->
+//            return "";
+            <!--<%# end %>-->
+//          }
+//        }
+//      ]
+    });
+  });
+</script>
