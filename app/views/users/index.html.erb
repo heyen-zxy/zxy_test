@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Users</h1>
 
-<table id="users-table" data-source="<%= users_path(format: :json) %>">
-  <thead>
+<div class="container  table-responsive ">
+  <h1>Listing Users</h1>
+  <table id="users-table" data-source="<%= users_path(format: :json) %>" class="table  table-hover">
+    <thead>
     <tr>
       <th>姓名</th>
       <th>邮箱</th>
@@ -13,28 +14,41 @@
       <th></th>
       <th></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
+  <%= link_to 'New User', new_user_path %>
+</div>
+
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+
 <script type="text/javascript">
   $(function() {
     var instance = $.extend(true, {'sSearchPlaceholder': '按 姓名/邮箱/QQ 搜索'}, datatable_zh_CN)
     var table = $('#users-table').DataTable({
-      processing: true,
-      serverSide: true,
+      serverSide: true, //开启服务器模式  默认false
       responsive: {details: false},
       lengthMenu: [ 15, 50, 100 ],
       ajax: $('#users-table').data('source'),
       pagingType: 'full_numbers',
-      ordering: false,
+      ordering: false, //是否开启排序 默认true
       language: instance,
+      info: true, //是否引入 左下角的页面 数量提示
+      jQueryUI: false, //是否引入jqueryUI
+      lengthChange: true, //是否可切换每页数据量
+      paging: true, //是否开启分页 默认true
+      processing: true, //是否开启显示处理状态 默认false 数据大时开启
+      scrollX: false, //是否水瓶滚动
+      //scrollY: '50px', //Y轴滚动
+      searching: true, //开启查询
+      stateSave: false, //保存也面状态
+      lengthMenu: [ 10, 25, 50, 75, 100 ],
+      stripe: true
 //      columnDefs: [
 //        {
 //          targets: 3,
