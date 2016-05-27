@@ -77,4 +77,4 @@
 
 ### weixin_rails_middleware
 
-##### [weixin_rails_middleware](https://github.com/lanrion/weixin_rails_middleware)开发微信应用就用它吧
+##### [weixin_rails_middleware](https://github.com/lanrion/weixin_rails_middleware)开发微信应用就用它吧,辅助工具[NATAPP](https://natapp.cn/#about)，基于[ngrok](https://www.npmjs.com/package/ngrok)(容易被墙)的内网穿透工具，在外网上访问你的本地应用。
