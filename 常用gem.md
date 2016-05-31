@@ -78,3 +78,13 @@
 ### weixin_rails_middleware
 
 ##### [weixin_rails_middleware](https://github.com/lanrion/weixin_rails_middleware)开发微信应用就用它吧,辅助工具[NATAPP](https://natapp.cn/#about)，基于[ngrok](https://www.npmjs.com/package/ngrok)(容易被墙)的内网穿透工具，在外网上访问你的本地应用。
+
+### ancestry
+##### [ancestry](https://github.com/stefankroes/ancestry)方便于model生成树状层级结构，多用于做公司组织架构或分类管理
+
+
+### mina
+##### [mina](https://github.com/mina-deploy/mina)部署项目
+
+### active_importer
+##### [active_importer](https://github.com/continuum/active_importer)excel上传

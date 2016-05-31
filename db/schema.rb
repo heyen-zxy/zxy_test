@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525035329) do
+ActiveRecord::Schema.define(version: 20160527062756) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "login"
@@ -38,6 +38,21 @@ ActiveRecord::Schema.define(version: 20160525035329) do
   end
 
   add_index "admins_roles", ["admin_id", "role_id"], name: "index_admins_roles_on_admin_id_and_role_id"
+
+  create_table "animals", force: :cascade do |t|
+    t.string   "type"
+    t.string   "name"
+    t.integer  "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "organizes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

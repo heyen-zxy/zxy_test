@@ -1,0 +1,17 @@
+<%= form_for(@organize) do |f| %>
+  <% if @organize.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organize.errors.count, "error") %> prohibited this organize from being saved:</h2>
+
+      <ul>
+      <% @organize.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

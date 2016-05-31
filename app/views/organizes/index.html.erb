@@ -1,43 +1,43 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Listing Organizes</h1>
+<ol class="breadcrumb">
+  <li class="active"><%= link_to('组织架构', organizes_path) %></li>
+  <% @parents.each do |parent|  %>
 
-<div class="  ">
-  <h1>Listing Users
-    <%= link_to 'excel导出', users_path(format: 'xls'), class: 'pull-right' %>
-    <%= link_to 'csv导出', users_path(format: 'csv'), class: 'pull-right' %>
-  </h1>
-  <table id="users-table" data-source="<%= users_path(format: :json) %>" class="table  table-hover">
-    <thead>
+      <li><%= link_to(parent.name, organizes_path(id: parent.id)) %></li>
+
+  <% end %>
+  <% if @org.id.present? %>
+    <li class="active"><%= @org.name %></li>
+  <% end %>
+</ol>
+
+<table id="organizes-table" data-source="<%= organizes_path(id: params[:id], format: :json) %>" class="table  table-hover">
+  <thead>
     <tr>
-      <th>姓名</th>
-      <th>邮箱</th>
-      <th>QQ</th>
-      <th>年龄</th>
-      <th>地址</th>
+      <th>组织名</th>
       <th></th>
       <th></th>
     </tr>
-    </thead>
+  </thead>
 
-    <tbody>
+  <tbody>
 
-    </tbody>
-  </table>
-  <%= link_to 'New User', new_user_path %>
-</div>
-
+  </tbody>
+</table>
 
 <br>
 
-
+<%= link_to 'New Organize', new_organize_path %>
 <script type="text/javascript">
   $(function() {
-    var instance = $.extend(true, {'sSearchPlaceholder': '按 姓名/邮箱/QQ 搜索'}, datatable_zh_CN)
-    var table = $('#users-table').DataTable({
+    var instance = $.extend(true, {'sSearchPlaceholder': '按 组织名'}, datatable_zh_CN)
+    var table = $('#organizes-table').DataTable({
       serverSide: true, //开启服务器模式  默认false
       responsive: {details: false},
       lengthMenu: [ 15, 50, 100 ],
-      ajax: $('#users-table').data('source'),
+      ajax: $('#organizes-table').data('source'),
       pagingType: 'full_numbers',
       ordering: false, //是否开启排序 默认true
       language: instance,
@@ -48,7 +48,7 @@
       processing: true, //是否开启显示处理状态 默认false 数据大时开启
       scrollX: false, //是否水瓶滚动
       //scrollY: '50px', //Y轴滚动
-      searching: true, //开启查询
+      searching: false, //开启查询
       stateSave: false, //保存也面状态
 //      lengthMenu: [ 10, 25, 50, 75, 100 ],
       stripe: true
@@ -56,11 +56,11 @@
 //        {
 //          targets: 3,
 //          render: function(data, type, row) {
-            <!--<%# if can? :manage, Instance %>-->
+      <!--<%# if can? :manage, Instance %>-->
 //            return data;
-            <!--<%# else %>-->
+      <!--<%# else %>-->
 //            return "";
-            <!--<%# end %>-->
+      <!--<%# end %>-->
 //          }
 //        }
 //      ]

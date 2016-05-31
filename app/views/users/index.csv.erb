@@ -1,0 +1,5 @@
+
+<%=  "名字, 邮箱, QQ, 年龄, 地址"  %>
+<% User.all.each do |user| %>
+  <%= "#{user.name}, #{user.email}, #{user.qq}, #{user.age}, #{user.address}" %>
+<% end %>

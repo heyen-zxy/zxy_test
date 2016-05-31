@@ -74,3 +74,8 @@ gem 'annotate'
 gem 'jquery-datatables-rails'
 gem 'ajax-datatables-rails'
 gem 'bootstrap-sass'
+
+gem 'ancestry'
+
+# excel导入
+gem 'active_importer'

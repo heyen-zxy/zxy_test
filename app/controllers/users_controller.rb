@@ -5,9 +5,16 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @user_data = UserDatatable.new(view_context)
     respond_to do |format|
       format.html
-      format.json { render json: UserDatatable.new(view_context) }
+      format.json { render json: @user_data }
+      format.xls{
+        headers["Content-Disposition"] = "attachment; filename=\"用户分类-#{Date.today}.xls\""
+      }
+      format.csv{
+        headers["Content-Disposition"] = "attachment; filename=\"用户分类-#{Date.today}.csv\""
+      }
     end
     pp '-------------'
     # #Sms.send_heartbeat
