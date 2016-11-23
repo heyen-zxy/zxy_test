@@ -3,8 +3,8 @@
 # Table name: organizes
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  ancestry   :string
+#  name       :string(255)
+#  ancestry   :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

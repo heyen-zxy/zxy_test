@@ -1,7 +1,7 @@
-require 'rest-client'
-require 'pp'
+require 'net/http'
 require 'rails'
-
+require 'net/https'
+require 'rest-client'
 class TestBaiWu
     USER_ID = 'sh0263'
     PASSWORD = 'mm0027'
@@ -22,9 +22,9 @@ class TestBaiWu
     MSG_PARAMS = {
         id: USER_ID,
         MD5_td_code: MD5_CODE,
-        mobile: '13585665936',#13133811659
+        mobile: '13133811659',#13133811659
         msg_content: 'zzzz!test'.encode('GBK', 'UTF-8'),
-        msg_id: SecureRandom.uuid,
+        msg_id: rand(99999999999),
         ext: '77777'}
 
 
@@ -100,10 +100,43 @@ class TestBaiWu
 
 
 
+    #HTTPS发送接口
+    MSG_HTTPS = 'https://sms.cloud.hbsmservice.com:8443/sms_send2.do'
+    HTTPS_PARAMS = {
+        corp_id: USER_ID,
+        corp_pwd: PASSWORD,
+        corp_service: WORK_CODE,
+        corp_msg_id: rand(999999999),
+        ext: '263'
+    }
+
+
 
 
     def self.bw_response url, params
-      pp RestClient.post url, params
+      uri = URI(url)
+      res = Net::HTTP.post_form(uri, params)
+    end
+
+
+    def self.send mobile, content
+      msg = MSG_PARAMS.merge(mobile: mobile, msg_content: content.encode('GBK', 'UTF-8'))
+      msg_reponse = bw_response MSG_HTTP, msg
+      p "#{mobile} => #{msg_reponse.body}"
+    end
+
+    def self.https_send mobile, content
+      msg = HTTPS_PARAMS.merge(mobile: mobile, msg_content: content.encode('GBK', 'UTF-8'))
+      RestClient.post MSG_HTTPS, msg
+
+      #msg = HTTPS_PARAMS.merge(mobile: mobile, msg_content: content.encode('GBK', 'UTF-8'))
+      #msg_reponse = bw_response MSG_HTTPS, msg
+      #p "#{mobile} => #{msg_reponse.body}"
+    end
+
+    def self.report
+      obtain_reponse = bw_response OBTAIN_HTTP, OBTAIN_PARAMS
+      p Hash.from_xml(obtain_reponse.body) unless obtain_reponse.body == "0"
     end
 
     private
@@ -116,20 +149,35 @@ class TestBaiWu
                       else raise '短信内容格式错误'
                     end
       sm = sm.encode(to_encoding, from_encoding).unpack('H*').join
+      RestClient
     end
 
 
 
+  #send '13585665936', "大家端午节快乐! 发送开始时间: #{Time.now.to_s}"
+    https_send '13585665936', 'sssss'
+
   #短信reponse
-  #msg_reponse = bw_response MSG_HTTP, MSG_PARAMS
+     # arr = ['13310171660', '18917243323', '18901661767', '18010120866' , '18922781103',
+     # '18601737136', '17091839278', '15800873141', '13917081667', '15017575810', '13911534431']
+   #  arr = ['18621524186', '13585665936', '13133811659']
+   #  arr.each do |mobile|
+   #    p ARGV
+   #    mobile = '13585665936'
+   #    msg = MSG_PARAMS.merge(mobile: mobile, msg_content: "端午节快乐! 发送开始时间: #{Time.now.to_s}".encode('GBK', 'UTF-8'))
+   #    p msg
+   #    msg_reponse = bw_response MSG_HTTP, msg
+   #    p "#{mobile} => #{msg_reponse.body}"
+   #  end
+   # p msg_reponse = bw_response(MSG_HTTP, MSG_PARAMS)
   #群发短信 reponse
   # sms_reponse = bw_response SMS_HTTP, SMS_PARAMS
   # #余额查询 reponse
   # blc_reponse = bw_response BLC_HTTP, BLC_PARAMS
-  # #状态报告 reponse
-  obtain_reponse = bw_response OBTAIN_HTTP, OBTAIN_PARAMS
-  pp Hash.from_xml(obtain_reponse) unless obtain_reponse == "0"
-  #pp Hash.from_xml obtain_reponse
+  # # #状态报告 reponse
+  #obtain_reponse = bw_response OBTAIN_HTTP, OBTAIN_PARAMS
+  #p Hash.from_xml(obtain_reponse.body) unless obtain_reponse == "0"
+  #p Hash.from_xml obtain_reponse
   # #上行信息 response
   # up_response = bw_response UP_HTTP, UP_PARAMS
 

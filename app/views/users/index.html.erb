@@ -3,8 +3,6 @@
 
 <div class="  ">
   <h1>Listing Users
-    <%= link_to 'excel导出', users_path(format: 'xls'), class: 'pull-right' %>
-    <%= link_to 'csv导出', users_path(format: 'csv'), class: 'pull-right' %>
   </h1>
   <table id="users-table" data-source="<%= users_path(format: :json) %>" class="table  table-hover">
     <thead>
@@ -23,11 +21,17 @@
 
     </tbody>
   </table>
+  <div id="export" class="pull-right">
+    <%= link_to 'excel导入', importer_users_path, class: 'btn', 'data-toggle' => "modal", 'data-target' => "#myModal" %> |
+    <%= link_to 'excel导出', users_path(format: 'xls'), class: 'btn ' %>
+    <%= link_to 'csv导出', users_path(format: 'csv'), class: 'btn' %>
+  </div>
   <%= link_to 'New User', new_user_path %>
 </div>
 
 
 <br>
+
 
 
 <script type="text/javascript">
@@ -51,7 +55,10 @@
       searching: true, //开启查询
       stateSave: false, //保存也面状态
 //      lengthMenu: [ 10, 25, 50, 75, 100 ],
-      stripe: true
+      stripe: true,
+      preDrawCallback: function(settings){
+        $("#users-table_filter").append($("#export"));
+      }
 //      columnDefs: [
 //        {
 //          targets: 3,

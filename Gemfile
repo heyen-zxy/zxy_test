@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org'
+source 'https://gems.ruby-china.org/'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
@@ -79,3 +79,9 @@ gem 'ancestry'
 
 # excel导入
 gem 'active_importer'
+
+gem 'mysql2', "~> 0.3.11"
+
+gem 'active_record_union'
+
+gem 'whenever', :require => false

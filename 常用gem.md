@@ -88,3 +88,7 @@
 
 ### active_importer
 ##### [active_importer](https://github.com/continuum/active_importer)excel上传
+
+### rails-i18nterface
+#### [rails-i18nterface](https://github.com/mose/rails-i18nterface)做多语言或其他语言外包项目 页面可视化管理文言，对于翻译人员来说很实用的软件l* s
+s|”

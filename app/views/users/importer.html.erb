@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">组织架构导入</h4>
+</div>
+<%= form_tag(importer_users_path, multipart: true) do %>
+    <div class="modal-body">
+      <ol class='breadcrumb'>
+        <table class="table table-condensed table-bordered">
+          <thead>
+          <th>名字</th>
+          <th>邮箱</th>
+          <th>QQ</th>
+          <th>年龄</th>
+          <th>地址</th>
+          <th>组织架构</th>
+          </thead>
+        </table>
+
+        <ul>
+          <li>表格样式如上所示</li>
+          <li>根节点必须为组织架构的顶级结构</li>
+          <li>表格填写必须从根目录向后依次填写，中间不能空缺</li>
+          <li>如果层级结构较多可自<strong> 子节点5 </strong>依次向后延伸<strong> 子节点6... </strong></li>
+        </ul>
+      </ol>
+
+      <%= file_field_tag :file %>
+    </div>
+
+    <div class="modal-footer">
+      <%= submit_tag '保存', class: 'btn btn-primary', data: { disable_with: "处理中..." } %>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+<% end %>
